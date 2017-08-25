@@ -16,9 +16,9 @@
       <p style="color: red">You must <a href="{% url 'password' %}">define a password</a> for your account before disconnecting from Facebook.</p>
     {% endif %}
   {% else %}
-    <a href="{% url 'social:begin' 'facebook' %}">Connect to Facebook</a>
+    <a href="{% url 'social:begin' 'facebook' %}">Connect to Facebook</a> /
+	  <a href="{% url 'password' %}">change password</a>
   {% endif %}
 	<br>
-	<a href="{% url 'password' %}">change password</a>
 
 {% endblock %}
