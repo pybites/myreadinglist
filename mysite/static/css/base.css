@@ -1,7 +1,7 @@
 * {margin: 0;}
 main {min-height: 100%; 
 	padding-top: 60px; height: 100%;
-	width: 80%; 
+	width: 70%; 
 	margin: 0 auto; }
 
 iframe {overflow-x: hidden; }
@@ -24,11 +24,10 @@ a.linkTitle {color: #627aac; max-width: 380px; padding: 4px 8px; margin: 5px 0 0
 
 img {display: inline; padding: 0 5px;}
 
-
-.searchResWrapper {float: left; clear: both;}
-.miniAvatar {float: left; width: 30px; }
-.searchRes {float: right; width: 170px; 
-    font-size: 90%; margin-left: 5px;}
+/* autocomplete */
+.searchResWrapper { float: left; clear: both; padding-left: 0px; margin-left: 0px; }
+.miniAvatar {float: left; padding: 0px; margin-right: 5px; width: 30px; }
+.searchRes {float: right; width: 340px; font-size: 90%; }
 
 li {list-style: none;}
 blockquote { padding: 10px 25px; margin: 5px 10px; font-size: 90%; font-type:italic;
@@ -66,7 +65,7 @@ span#cboxTxt {width: 200px; float: left; }
 
 #loginWrapper {
     position: relative; height: 40px; 
-    width: 80%; margin: 0 auto; 
+    width: 70%; margin: 0 auto; 
 		padding-top: 10px;
     overflow: hidden;
 }
@@ -106,11 +105,6 @@ span#cboxTxt {width: 200px; float: left; }
     width: 230px; height: 20px; margin-right: 25px; }
 .fbLikeBtn {float: left; width: 130px; margin-right: 20px;}
 
-.bookInfoWrapper {
-  clear: both;
-  border: 1px solid #ddd;
-  padding: 5px;
-}
 .titleLine {width: 510px; margin-top: 30px;     padding: 10px;
     height: 250px; position: relative; border-top: 1px solid #ddd;
     /*border-radius: 8px;    -webkit-border-radius: 8px;    -moz-border-radius: 8px;
@@ -154,17 +148,53 @@ img.userthumb, img.thumbNail{
 }
 
 
-#titleMoreInfo, #onReadingList {
-    clear: both; padding-top: 10px; 
+#bookInfoWrapper {
+	padding-top: 10px; 
+	border: 1px solid #ddd;
+	overflow: hidden;
 }
-#titleMoreInfo li { margin-left: 5px;}
-#titleMoreInfo li.bookTitle {clear: both;  }
-#titleMoreInfo li.bookTitle h2 { font-size: 1.6em; 
-    margin: 0px !important; padding: 0 0 5px 0;}
-#titleMoreInfo li.bookThumb {float: right; margin-right: 20px; }
-#titleMoreInfo ul.bookInfo {float: left; padding: 5px; border-top: 1px solid #ddd; }
-#titleMoreInfo ul.bookInfo li {border-bottom: 1px solid #E8E8E8; margin: 5px;}
-#titleMoreInfo .bookDesc {clear: both !important; padding: 10px 0 0 5px; }
+
+#bookTitle { 
+	clear: both;
+	font-size: 2em; 
+	margin: 20px !important; 
+	padding: 10px;
+  background: #ddd url("img/glass-btn.png") top left no-repeat;
+}
+
+#bookInfo {
+  float: left;
+	width: 30%;
+	clear: both; 
+	padding: 5px; 
+}
+#bookInfo li {
+	margin: 10px;
+}
+
+#meta {
+  padding: 10px;
+	overflow: hidden;
+}
+#meta li { 
+	margin-left: 5px;
+	padding: 2px 0;
+	border-bottom: 1px solid #E8E8E8; 
+}
+#share { padding: 10px 0; }
+#share li {
+	display: inline;
+	margin: 5px 2px !important;
+	padding: 8px; 
+	border: 1px solid #ccc;
+	border-radius: 5px; }
+
+#bookDesc {
+	border-left: 1px solid #ddd;
+	float: right; 
+	width: 60%; 
+	padding: 20px; 
+}
 
 a.goToComment {position: relative; top: 4px;}
 
@@ -175,16 +205,6 @@ a.goToComment {position: relative; top: 4px;}
 a#addTitle {background-color: #900;}
 #twitFollow {position: absolute; left: 500px; top: 0px;}
 
-footer {
-  clear: both;font-size: 85%;  color: #000; 
-  background: rgba(210, 210, 210, 0.7);
-  margin: 0 auto;
-  padding: 5px;
-  border-top: 1px solid #ccc;
-}
-#links { margin: 0 auto; padding: 5px 0; border-top: 1px solid #ddd; }
-#links li {padding: 0 10px; float: left; border-left: 2px solid #ccc;}
-#links li.first {border-left: none; padding-left: none;}
 #addInfo {
     padding: 10px 0;
     margin: 5px 0 0 10px;

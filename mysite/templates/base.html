@@ -5,7 +5,8 @@
 <head>
   <title>My Reading List</title>
   <link rel="icon" type="image/png" href="{% static 'img/favicon.png' %}">
-  <link rel="stylesheet" type="text/css" href="{% static 'base.css' %}">
+  <link rel="stylesheet" type="text/css" href="{% static 'css/jquery.autocomplete.css' %}">
+  <link rel="stylesheet" type="text/css" href="{% static 'css/base.css' %}">
   <script src="{% static 'js/jquery_min.js' %}"></script>
   <script src="{% static 'js/jquery.autocomplete.js' %}"></script>
   <script src="{% static 'js/base.js' %}"></script>
@@ -16,11 +17,11 @@
 			<div id="loginWrapper">
 				<div id="navbar">
 					{% if user.is_authenticated %}
-						You are signed in as <strong>{{ user.username }}</strong> /
+						Welcome back, <strong>{{ user.username }}</strong> /
 						<a href="{% url 'home' %}">home</a> /
 						<a href="{% url 'settings' %}">settings</a> /
-						<a href="{% url 'password' %}">change password</a> /
-						<a href="{% url 'logout' %}">logout</a>
+						<a href="{% url 'logout' %}">logout</a> /
+            <a href="https://pybit.es" target="_blank">about</a>
 					{% else %}
 						<a href="{% url 'login' %}">login</a> /
 						<a href="{% url 'signup' %}">signup</a>
@@ -46,9 +47,5 @@
     {% block content %}
     {% endblock %}
   </main>
-  <footer>
-      <a href="https://pybit.es">PyBites Code Challenge 33</a> /
-      <a href="https://simpleisbetterthancomplex.com/tutorial/2016/10/24/how-to-add-social-login-to-django.html">FB Login Template</a>
-  </footer>
 </body>
 </html>

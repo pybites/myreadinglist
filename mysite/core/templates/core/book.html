@@ -3,44 +3,40 @@
 
 {% block content %}
 
-<div id="stream">
-	<div id="titleMoreInfo">
+	<div id="bookInfoWrapper">
 
-		<ul class="bookInfoWrapper">
+		<h2 id="bookTitle"><a class="fboxComment" href="preview.php?id={{ book.id }}">{{ book.title }}</a></h2>
 
-			<li class="bookTitle">
-				<h2><a class="fboxComment" href="preview.php?id={{ book.id }}">{{ book.title }}</a></h2>
-			</li>
-
-			<li class="bookThumb">
+		<ul id="bookInfo">
+			<li id="bookThumb">
 				<a class="fboxComment" href="preview.php?id={{ book.id }}">
 					<img class="thumbNail" src="http://books.google.com/books?id={{ book.id }}&printsec=frontcover&img=1&zoom=5&source=gbs_gdata" alt="{{ book.title }}">
 				</a>
 			</li>
 
-			<ul class="bookInfo">
+			<ul id="meta">
 				<li><strong>Author(s): </strong>{{ book.authors }}</li>
 				<li><strong>Publisher: </strong>{{ book.publisher }}</li>
 				<li><strong>Published: </strong>{{ book.release_date }}</li>
-				<li><strong>Other info: </strong>ISBN: {{ book.isbn }} &raquo; lang: {{ book.lang }} &raquo; pages: {{ book.pages }}</li>
-				<!--<li><strong>Reviews: </strong><a class="fboxEdit" href="{{ book.amazon_reviews }} ">Amazon</a></li>  -->
-				<li>
-					<a href='#'>like</a> &raquo;
-					<a href='#'>add</a> &raquo;
-					<a href="http://twitter.com/home?status=My Reading List: {{ book.title }} {{ request.get_full_path }} via%20@fbreadinglist" target="_blank">
-						<img src="{% static 'img/twitter-icon.png' %}" ></a>
-					<a href="http://facebook.com/sharer.php?u={{ request.get_full_path }}&t=My Reading List: {{ book.title }}" target="_blank">
-						<img src="{% static 'img/facebook-icon.png' %}"></a>
-				</li>
-			</ul>
+				<li><strong>ISBN: </strong>{{ book.isbn }}</li>
+				<li><strong>Page Count: </strong>{{ book.pages }}</li>
+				<li><strong>Language: </strong>{{ book.lang }}</li>
 
-			<ul class="bookDesc">
-				<li><strong>Description: </strong><br> {{ book.description|safe }}</li>
+				<ul id="share">
+					<li><a href='#'>like</a></li>
+					<li><a href='#'>add</a></li>
+					<li><a href="http://twitter.com/home?status=My Reading List: {{ book.title }} {{ request.get_full_path }} via%20@fbreadinglist" target="_blank">
+						<img src="{% static 'img/twitter-icon.png' %}" ></a></li>
+					<li><a href="http://facebook.com/sharer.php?u={{ request.get_full_path }}&t=My Reading List: {{ book.title }}" target="_blank">
+						<img src="{% static 'img/facebook-icon.png' %}"></a></li>
+				</ul>
 			</ul>
-
 		</ul>
 
+		<div id="bookDesc">
+			<li><strong>Description: </strong><br> {{ book.description|safe }}</li>
+		</div>
+
 	</div>
-</div>
 
 {% endblock %}

@@ -10,7 +10,7 @@ from social_django.models import UserSocialAuth
 
 from .gbooks import search_books, get_book_info
 
-BOOK_ENTRY = '''<span class="searchResWrapper"><span class="searchRes" id="{id}">{title}<img class="miniAvatar" src="{thumb}"></span></span>\n'''
+BOOK_ENTRY = '''<span class="searchResWrapper"><span class="searchRes" id="{id}"><img class="miniAvatar" src="{thumb}">{title}</span></span>\n'''
 
 
 def _parse_response(items):
