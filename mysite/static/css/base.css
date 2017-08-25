@@ -18,7 +18,7 @@ h3.userHeader {font-size: 1em; }
 
 a {color: #900; text-decoration: none;}
 a.linkTitle {color: #627aac; max-width: 380px; padding: 4px 8px; margin: 5px 0 0 45px;
-    background: #ddd url("img/glass-btn.png") top left no-repeat;
+    background: #ddd url("../img/glass-btn.png") top left no-repeat;
     border-radius: 5px;    -webkit-border-radius: 5px;    -moz-border-radius: 5px; }
 #whoLikes a.linkTitle {margin: 20px 0 0 0;}
 
@@ -31,7 +31,7 @@ img {display: inline; padding: 0 5px;}
 
 li {list-style: none;}
 blockquote { padding: 10px 25px; margin: 5px 10px; font-size: 90%; font-type:italic;
-    background:url('img/quoteLeft.png') top left no-repeat, url('img/quoteRight.png') bottom right no-repeat;}
+    background:url('../img/quoteLeft.png') top left no-repeat, url('../img/quoteRight.png') bottom right no-repeat;}
     
 select#status { font-size: 120%; height: 40px; width: 200px !important;}
 
@@ -41,7 +41,7 @@ span#cboxTxt {width: 200px; float: left; }
 #commentForm #submitCommentForm {width: 100px; }
 .btn, .btn2  {    /*btn css from Dan Cederholm - handcrafted CSS */ 
     display: block; text-decoration: none; color: #fff; 
-    background: #627aac url("img/glass-btn.png") repeat-x 0 50%; padding: 4px 10px; }
+    background: #627aac url("../img/glass-btn.png") repeat-x 0 50%; padding: 4px 10px; }
 .btn {
     border-radius: 8px;    -webkit-border-radius: 8px;    -moz-border-radius: 8px;
 }
@@ -92,7 +92,7 @@ span#cboxTxt {width: 200px; float: left; }
 
 .defaultTextActive { color: #a1a1a1; font-style: italic; }
 .error {font-weight: bold; color: red; padding-left: 20px; 
-    background:url("img/delete.gif") center left no-repeat; }
+    background:url("../img/delete.gif") center left no-repeat; }
 .warning {font-weight: bold; color: orange; margin: 10px 20px; }
 .confirmation {font-weight: bold; color: green;}
 #feedbackMsg {line-height: 2em; font-size: 1.2em; 
@@ -117,7 +117,7 @@ img.userthumb, img.thumbNail{
 
 #load {    display: block; width: 530px;
     color: #fff; text-align: center;
-    background: #627aac url("img/glass-btn.png") repeat-x 0 50%; 
+    background: #627aac url("../img/glass-btn.png") repeat-x 0 50%; 
     font-size: 1.5em; text-decoration: none;
      border: 1px solid #ccc; margin-top: 20px;
     border-radius: 8px;    -webkit-border-radius: 8px;    -moz-border-radius: 8px;
@@ -159,7 +159,7 @@ img.userthumb, img.thumbNail{
 	font-size: 2em; 
 	margin: 20px !important; 
 	padding: 10px;
-  background: #ddd url("img/glass-btn.png") top left no-repeat;
+  background: #ddd url("../img/glass-btn.png") top left no-repeat;
 }
 
 #bookInfo {
@@ -218,7 +218,7 @@ a#addTitle {background-color: #900;}
   color: #0F0;
 }
 
-.edit {background:url('img/edit.gif') top left no-repeat; padding: 0px 10px 10px 20px; }
+.edit {background:url('../img/edit.gif') top left no-repeat; padding: 0px 10px 10px 20px; }
 .editable textarea {height: 50px !important; margin: 0px !important;}
 .editable_select { width: 100px !important; }
 .notSelectRow{ background-color: #627aac; color: #fff; 
