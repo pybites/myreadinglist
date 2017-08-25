@@ -1,0 +1,54 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+<head>
+  <title>My Reading List</title>
+  <link rel="icon" type="image/png" href="{% static 'img/favicon.png' %}">
+  <link rel="stylesheet" type="text/css" href="{% static 'base.css' %}">
+  <script src="{% static 'js/jquery_min.js' %}"></script>
+  <script src="{% static 'js/jquery.autocomplete.js' %}"></script>
+  <script src="{% static 'js/base.js' %}"></script>
+</head>
+<body>
+	<header>
+    <div id="login" class="btn2">
+			<div id="loginWrapper">
+				<div id="navbar">
+					{% if user.is_authenticated %}
+						You are signed in as <strong>{{ user.username }}</strong> /
+						<a href="{% url 'home' %}">home</a> /
+						<a href="{% url 'settings' %}">settings</a> /
+						<a href="{% url 'password' %}">change password</a> /
+						<a href="{% url 'logout' %}">logout</a>
+					{% else %}
+						<a href="{% url 'login' %}">login</a> /
+						<a href="{% url 'signup' %}">signup</a>
+					{% endif %}
+				</div>
+				<form id="searchAddedBooks" action="" method="POST">
+				 {% csrf_token %}
+					<ul>
+						<li>
+							<input type="text" id="searchTitles" class="defaultText" title="{ Search Books ... }" />
+						</li>
+					</ul>
+				</form>
+			</div>
+		</div>
+  </header>
+  <main>
+    {% for message in messages %}
+      <p style="color: {% if message.tags == 'success' %}green{% elif message.tags == 'error' %}red{% endif %}">
+        {{ message }}
+      </p>
+    {% endfor %}
+    {% block content %}
+    {% endblock %}
+  </main>
+  <footer>
+      <a href="https://pybit.es">PyBites Code Challenge 33</a> /
+      <a href="https://simpleisbetterthancomplex.com/tutorial/2016/10/24/how-to-add-social-login-to-django.html">FB Login Template</a>
+  </footer>
+</body>
+</html>

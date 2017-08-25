@@ -1,0 +1,5 @@
+venv
+mysite/staticfiles/
+book_cache.sqlite
+**pyc
+**swp
