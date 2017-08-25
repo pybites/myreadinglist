@@ -5,7 +5,7 @@ $(document).ready(function(){
     
     // http://forum.jquery.com/topic/jquery-autocomplete-submit-form-on-result
     $("#searchTitles").result(function (event, data, formatted) {
-        $("#searchProgress").append('<img src="i/loader.gif" alt="Loading .." id="loading" />');
+        $("#searchProgress").append('<img src="img/loader.gif" alt="Loading ..." id="loading" />');
             var searchVal = $("#searchTitles").val();
             $("#searchTitles").val('');
             
