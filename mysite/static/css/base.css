@@ -12,13 +12,19 @@ h1, h2 {
 }
 li { 
   list-style: none;
-	padding-bottom: 5px;
 }
+
+#searchBookForm input[type=text]{
+	width: 500px !important;
+	opacity: 0.7;
+}
+
 #bookThumb {
 	margin-right: 20px;
 	float: left; 
 }
 #social {
+  /* TODO */
 	border: 1px solid red;
 	clear: both;
 }
@@ -28,35 +34,32 @@ li {
 #actions { 
 	padding: 0px; 
 }
-#navbar li, #actions, #actions li {
-  display: inline;
-}
+
 header {
-	height: 30px;
-  background: #627aac url("../img/glass-btn.png") repeat-x 0 50%; 
+  /* https://bobbelderbos.com/2012/03/how-to-make-a-fixed-sidebar-or-header-with-css/ */
+  position: fixed;
+  top: 0; left: 0;
+  z-index: 20;
+  width: 100%;
+}
+.bg-light {
+  background: #627aac url("../img/glass-btn.png") repeat-x 0 50% !important;
 }
 main {
 	padding: 10px;
+  z-index: 10;
+  position: relative;
+  top: 50px;
 }
-input#searchTitles {
-	background: none;
-	color: #fff;
-	width: 100%;
-	border: none;
-}
-#navbar {
-	text-align: right; 
-}
-#navbar li, #actions li {
+#actions li {
 	padding: 0 5px;
 	border-left: 1px solid #ddd;
 }
-#navbar li:first-child {
-	border-left: none;
+#actions, #actions li {
+  display: inline;
 }
-#navbar a {
-	color: #ddd;
-}
+
+
 /* autocomplete */
 .searchResWrapper {
   float: left; 
@@ -74,6 +77,3 @@ input#searchTitles {
 	font-size: 90%; 
 }
 
-.defaultTextActive {
-  color: #a1a1a1; font-style: italic; 
-}

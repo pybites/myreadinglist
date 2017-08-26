@@ -20,26 +20,46 @@
 			<div class="container-fluid">
 				<div class="row">
 
-					<form id="searchAddedBooks" class="col-6" action="" method="POST">
-						{% csrf_token %}
-						<input type="text" id="searchTitles" class="defaultText" title="{ Search Books ... }" />
-					</form>
+					<nav class="col-12 navbar navbar-expand-lg navbar-light bg-light">
+						<a class="navbar-brand" href="{% url 'home' %}"><img id="logo" src="{% static 'img/icon.png' %}" alt="My Reading List"></a>
+						<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+							<span class="navbar-toggler-icon"></span>
+						</button>
 
-					<ul id="navbar" class="col-6">
-						  <li><a href="{% url 'home' %}"><img id="logo" src="{% static 'img/icon.png' %}" alt="My Reading List"></a></li>
-						{% if user.is_authenticated %}
-							<li>Welcome back, <strong>{{ user.username }}</strong></li>
-							<li><a href="{% url 'settings' %}">settings</a></li>
-							<li><a href="{% url 'logout' %}">logout</a></li>
-							<li><a href="https://pybit.es" target="_blank">about</a></li>
-						{% else %}
-							<li><a href="{% url 'login' %}">login</a></li>
-							<li><a href="{% url 'signup' %}">signup</a></li>
-						{% endif %}
+						<div class="collapse navbar-collapse" id="navbarSupportedContent">
+							<ul class="navbar-nav mr-auto">
+								<li class="nav-item active">
+									<a class="nav-link" href="{% url 'home' %}">Home <span class="sr-only">(current)</span></a>
+								</li>
+								{% if user.is_authenticated %}
+									<li class="nav-item">
+										<a class="nav-link" href="{% url 'settings' %}">Settings</a>
+									</li>
+									<li class="nav-item">
+										<a class="nav-link" href="{% url 'logout' %}">Logout</a>
+									</li>
+								{% else %}
+									<li class="nav-item">
+										<a class="nav-link" href="{% url 'login' %}">Login</a>
+									</li>
+									<li class="nav-item">
+										<a class="nav-link" href="{% url 'signup' %}">Signup</a>
+									</li>
+								{% endif %}
+								<li class="nav-item">
+									<a class="nav-link" href="https://pybit.es" target="_blank">About</a>
+								</li>
+							</ul>
+							<form class="form-inline my-6 my-lg-0" id="searchBookForm">
+								<input class="form-control mr-sm-2" type="text" name="searchTitles", id="searchTitles" placeholder="Search Books" aria-label="Search Books">
+							</form>
+						</div>
+					</nav>
+
 					</ul>
 
-				</div>
-</div>
+				</div><!-- end row -->
+			</div><!-- end container -->
 
     </header>
 
