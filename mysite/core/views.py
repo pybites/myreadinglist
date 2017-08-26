@@ -11,6 +11,7 @@ from social_django.models import UserSocialAuth
 from .gbooks import search_books, get_book_info
 
 BOOK_ENTRY = '''<span class="searchResWrapper"><span class="searchRes" id="{id}"><img class="miniAvatar" src="{thumb}">{title} ({authors})</span></span>\n'''  # noqa E501
+NOT_FOUND = 'not_found'
 
 
 def _parse_response(items):
@@ -50,12 +51,13 @@ def get_books(request):
 
 def book_page(request, bookid):
     resp = get_book_info(bookid)
+    industry_identifiers = resp['volumeInfo'].get('industryIdentifiers')
     book = dict(
         id=bookid,
         title=resp['volumeInfo']['title'],
         description=resp['volumeInfo'].get('description', 'No description'),
         authors=', '.join(resp['volumeInfo']['authors']),
-        isbn=resp['volumeInfo']['industryIdentifiers'][-1]['identifier'],
+        isbn=industry_identifiers[-1]['identifier'] if industry_identifiers else NOT_FOUND,  # noqa E501
         lang=resp['volumeInfo']['language'],
         pages=resp['volumeInfo']['pageCount'],
         release_date=resp['volumeInfo']['publishedDate'],
