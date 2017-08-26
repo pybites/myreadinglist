@@ -55,7 +55,7 @@ def book_page(request, bookid):
         lang=resp['volumeInfo']['language'],
         pages=resp['volumeInfo']['pageCount'],
         release_date=resp['volumeInfo']['publishedDate'],
-        publisher=resp['volumeInfo']['publisher'],
+        publisher=resp['volumeInfo']['publisher'].strip('"'),
         amazon_reviews='',  # TODO
     )
     return render(request, 'core/book.html', {'book': book})

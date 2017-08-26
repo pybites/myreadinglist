@@ -17,8 +17,8 @@
     {% endif %}
   {% else %}
     <a href="{% url 'social:begin' 'facebook' %}">Connect to Facebook</a> /
-	  <a href="{% url 'password' %}">change password</a>
   {% endif %}
+	<a href="{% url 'password' %}">Change password</a>
 	<br>
 
 {% endblock %}
