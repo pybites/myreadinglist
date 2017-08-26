@@ -10,7 +10,7 @@ from social_django.models import UserSocialAuth
 
 from .gbooks import search_books, get_book_info
 
-BOOK_ENTRY = '''<span class="searchResWrapper"><span class="searchRes" id="{id}"><img class="miniAvatar" src="{thumb}">{title}</span></span>\n'''
+BOOK_ENTRY = '''<span class="searchResWrapper"><span class="searchRes" id="{id}"><img class="miniAvatar" src="{thumb}">{title} ({authors})</span></span>\n'''  # noqa E501
 
 
 def _parse_response(items):
@@ -18,10 +18,14 @@ def _parse_response(items):
         try:
             id_ = item['id']
             title = item['volumeInfo']['title']
+            authors = item['volumeInfo']['authors'][0]
             thumb = item['volumeInfo']['imageLinks']['smallThumbnail']
         except KeyError:
             continue
-        book_entry = BOOK_ENTRY.format(id=id_, title=title, thumb=thumb)
+        book_entry = BOOK_ENTRY.format(id=id_,
+                                       title=title,
+                                       authors=authors,
+                                       thumb=thumb)
         yield book_entry
 
 
@@ -49,7 +53,7 @@ def book_page(request, bookid):
     book = dict(
         id=bookid,
         title=resp['volumeInfo']['title'],
-        description=resp['volumeInfo'].get('description', 'no description found'),
+        description=resp['volumeInfo'].get('description', 'No description'),
         authors=', '.join(resp['volumeInfo']['authors']),
         isbn=resp['volumeInfo']['industryIdentifiers'][-1]['identifier'],
         lang=resp['volumeInfo']['language'],
@@ -59,7 +63,6 @@ def book_page(request, bookid):
         amazon_reviews='',  # TODO
     )
     return render(request, 'core/book.html', {'book': book})
-
 
 
 def signup(request):
