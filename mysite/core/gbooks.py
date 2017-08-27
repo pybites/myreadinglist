@@ -1,3 +1,4 @@
+from django.contrib.auth import get_user
 import requests
 
 from mysite.core.models import Book, Search
@@ -48,7 +49,11 @@ def get_book_info(book_id):
 
 def search_books(term, request):
     ''' autocomplete = keep this one api live / no cache '''
-    search = Search(term=term, user=request.user)
+    search = Search(term=term)
+
+    if request.user.is_authenticated():
+        search.user = request.user
+
     search.save()
 
     query = SEARCH_URL.format(term)
