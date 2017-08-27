@@ -10,16 +10,21 @@ from social_django.models import UserSocialAuth
 
 from .gbooks import search_books, get_book_info
 
-BOOK_ENTRY = '''<span class="searchResWrapper"><span class="searchRes" id="{id}"><img class="miniAvatar" src="{thumb}">{title} ({authors})</span></span>\n'''  # noqa E501
+BOOK_ENTRY = ('<span class="searchResWrapper">'
+              '<span class="searchRes" id="{id}">'
+              '<img class="miniAvatar" src="{thumb}">'
+              '{title} ({authors})</span>'
+              '</span>\n')
 
 
 def _parse_response(items):
     for item in items:
         try:
             id_ = item['id']
-            title = item['volumeInfo']['title']
-            authors = item['volumeInfo']['authors'][0]
-            thumb = item['volumeInfo']['imageLinks']['smallThumbnail']
+            volinfo = item['volumeInfo']
+            title = volinfo['title']
+            authors = volinfo['authors'][0]
+            thumb = volinfo['imageLinks']['smallThumbnail']
         except KeyError:
             continue
         book_entry = BOOK_ENTRY.format(id=id_,
@@ -38,7 +43,7 @@ def get_books(request):
         return no_result
 
     term = request.GET.get('q', '')
-    books = search_books(term)
+    books = search_books(term, request)
     items = books.get('items')
     if not items:
         return no_result
@@ -69,7 +74,6 @@ def signup(request):
     return render(request, 'registration/signup.html', {'form': form})
 
 
-@login_required
 def home(request):
     return render(request, 'core/home.html')
 

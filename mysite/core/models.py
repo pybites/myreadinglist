@@ -19,25 +19,6 @@ class Book(models.Model):
         return '{} {}'.format(self.bookid, self.title)
 
 
-class Search(models.Model):
-    book = models.ForeignKey(Book, related_name='book_search_set')
-    user = models.ForeignKey(User, related_name='user_search_set')
-    inserted = models.DateTimeField('inserted', auto_now_add=True)
-    edited = models.DateTimeField('last modified', auto_now=True)
-
-    class Meta:
-        verbose_name_plural = 'searches'
-
-
-class Like(models.Model):
-    book = models.ForeignKey(Book, related_name='book_like_set')
-    user = models.ForeignKey(User, related_name='user_like_set')
-    comment = models.TextField(null=True)
-    deleted = models.BooleanField(default=False)
-    inserted = models.DateTimeField('inserted', auto_now_add=True)
-    edited = models.DateTimeField('last modified', auto_now=True)
-
-
 class Status(models.Model):
     ACTIONS = (
         ('HR', 'Have Read'),
@@ -59,3 +40,24 @@ class Status(models.Model):
 
     class Meta:
         verbose_name_plural = 'statuses'
+
+
+class Like(models.Model):
+    book = models.ForeignKey(Book, related_name='book_like_set')
+    user = models.ForeignKey(User, related_name='user_like_set')
+    comment = models.TextField(null=True)
+    deleted = models.BooleanField(default=False)
+    inserted = models.DateTimeField('inserted', auto_now_add=True)
+    edited = models.DateTimeField('last modified', auto_now=True)
+
+
+class Search(models.Model):
+    term = models.CharField(max_length=20)
+    user = models.ForeignKey(User, related_name='user_search_set', null=True)
+    inserted = models.DateTimeField('inserted', auto_now_add=True)
+
+    class Meta:
+        verbose_name_plural = 'searches'
+
+    def __str__(self):
+        return self.term

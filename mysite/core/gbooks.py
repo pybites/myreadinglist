@@ -1,6 +1,6 @@
 import requests
 
-from mysite.core.models import Book
+from mysite.core.models import Book, Search
 
 BASE_URL = 'https://www.googleapis.com/books/v1/volumes'
 SEARCH_URL = BASE_URL + '?q={}'
@@ -46,8 +46,11 @@ def get_book_info(book_id):
         return book
 
 
-def search_books(term):
+def search_books(term, request):
     ''' autocomplete = keep this one api live / no cache '''
+    search = Search(term=term, user=request.user)
+    search.save()
+
     query = SEARCH_URL.format(term)
     return requests.get(query).json()
 
