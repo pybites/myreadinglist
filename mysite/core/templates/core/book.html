@@ -5,47 +5,57 @@
 
 	<div class="container-fluid" id="bookInfoWrapper">
     <div class="row">
-
       <h2 id="bookTitle"><a class="fboxComment" href="preview.php?id={{ book.bookid }}">{{ book.title }}</a></h2>
     </div>
 
     <div class="row">
-      <div id="bookInfo" class="col-6">
-        <a id="bookThumb" href="#"><img class="thumbNail" src="http://books.google.com/books?id={{ book.bookid }}&printsec=frontcover&img=1&zoom=5&source=gbs_gdata" alt="{{ book.title }}"></a>
-
-        <ul id="meta">
+      <div id="bookInfo" class="col-md-3">
+        <ul>
+          <li>
+            <a href="#">
+              <img class="thumbNail" src="http://books.google.com/books?id={{ book.bookid }}&printsec=frontcover&img=1&zoom=5&source=gbs_gdata"
+                alt="{{ book.title }}">
+            </a>
+          </li>
           <li><strong>Author(s): </strong>{{ book.authors }}</li>
           <li><strong>Publisher: </strong>{{ book.publisher }}</li>
           <li><strong>Published: </strong>{{ book.published }}</li>
           <li><strong>ISBN: </strong>{{ book.isbn }}</li>
           <li><strong>Page Count: </strong>{{ book.pages }}</li>
           <li><strong>Language: </strong>{{ book.language }}</li>
-          <li>
-            <strong>Actions: </strong>
 
-            <ul id="actions">
-              <li><a href='#' class="btn btn-info" role="button">like</a></li>
-              <li><a href='#' class="btn btn-info" role="button">add</a></li>
-              <li class="btn btn-info" role="button"><a href="http://twitter.com/home?status=My Reading List: {{ book.title }} {{ request.get_full_path }} via%20@fbreadinglist" target="_blank">share</a></li>
-            </ul>
-          </li>
+          {% if user.is_authenticated %}
+            <li id="actionWrapper">
 
-        </ul><!-- end meta -->
+              <div class="dropdown">
+                <button class="btn btn-secondary glass_btn dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" 
+                  aria-haspopup="true" aria-expanded="false">Add / Like Book</button>
 
-        {% if book.users %}
-          <div id="social">
-            <h3>Who reads this?</h3>
-          </div>
-        {% endif %}
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                  {% for action_abbr, action_name in actions %}
+                    <a class="dropdown-item" href="{{ action_abbr }}">{{ action_name }}</a>
+                  {% endfor %}
+                  <a class="dropdown-item" href='#'>Like / Comment</a>
+                  <a class="dropdown-item" href="http://twitter.com/home?status=My Reading List: {{ book.title }} {{ request.get_full_path }} via%20@fbreadinglist" target="_blank">Share on Twitter</a>
 
-      </div>
+                </div>
+              </div><!-- end dropdown -->
 
-      <div id="bookDesc" class="col-6">
+            </li>
+          {% endif %}
+
+        </ul>
+
+        <div id="bookInteraction">
+        </div>
+
+      </div><!-- end col-md-3 -->
+
+      <div id="bookDesc" class="col-md-9">
         <strong>Description: </strong><br> {{ book.description|safe }}
       </div>
 
-	  </div>
-  </div>
-  </div>
+    </div><!-- end row -->
+  </div><!-- end container -->
 
 {% endblock %}

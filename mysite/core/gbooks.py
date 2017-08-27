@@ -22,8 +22,8 @@ def get_book_info(book_id):
         bookid = book_id
         title = volinfo['title']
         authors = ', '.join(volinfo['authors'])
-        publisher = volinfo['publisher'].strip('"')
-        published = volinfo['publishedDate']
+        publisher = volinfo.get('publisher', NOT_FOUND).strip('"')
+        published = volinfo.get('publishedDate', NOT_FOUND)
 
         identifiers = volinfo.get('industryIdentifiers')
         isbn = identifiers[-1]['identifier'] if identifiers else NOT_FOUND

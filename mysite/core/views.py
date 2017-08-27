@@ -9,6 +9,8 @@ from django.http import HttpResponse
 from social_django.models import UserSocialAuth
 
 from .gbooks import search_books, get_book_info
+from .models import Status
+
 
 BOOK_ENTRY = ('<span class="searchResWrapper">'
               '<span class="searchRes" id="{id}">'
@@ -55,7 +57,8 @@ def get_books(request):
 
 def book_page(request, bookid):
     book = get_book_info(bookid)
-    return render(request, 'core/book.html', {'book': book})
+    actions = Status.ACTIONS
+    return render(request, 'core/book.html', {'book': book, 'actions': actions})
 
 
 def signup(request):
