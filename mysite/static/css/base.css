@@ -14,9 +14,13 @@ li {
   list-style: none;
 }
 
-#searchBookForm input[type=text]{
-	width: 500px !important;
+#searchTitles {
 	opacity: 0.7;
+}
+@media (min-width: 768px){
+	#searchTitles {
+		width: 500px;
+	}
 }
 
 /* .col-4, .col-8 { border: 1px solid red; } */
