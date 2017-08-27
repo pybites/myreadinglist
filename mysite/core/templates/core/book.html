@@ -6,20 +6,20 @@
 	<div class="container-fluid" id="bookInfoWrapper">
     <div class="row">
 
-      <h2 id="bookTitle"><a class="fboxComment" href="preview.php?id={{ book.id }}">{{ book.title }}</a></h2>
+      <h2 id="bookTitle"><a class="fboxComment" href="preview.php?id={{ book.bookid }}">{{ book.title }}</a></h2>
     </div>
 
     <div class="row">
       <div id="bookInfo" class="col-6">
-        <a id="bookThumb" href="#"><img class="thumbNail" src="http://books.google.com/books?id={{ book.id }}&printsec=frontcover&img=1&zoom=5&source=gbs_gdata" alt="{{ book.title }}"></a>
+        <a id="bookThumb" href="#"><img class="thumbNail" src="http://books.google.com/books?id={{ book.bookid }}&printsec=frontcover&img=1&zoom=5&source=gbs_gdata" alt="{{ book.title }}"></a>
 
         <ul id="meta">
           <li><strong>Author(s): </strong>{{ book.authors }}</li>
           <li><strong>Publisher: </strong>{{ book.publisher }}</li>
-          <li><strong>Published: </strong>{{ book.release_date }}</li>
+          <li><strong>Published: </strong>{{ book.published }}</li>
           <li><strong>ISBN: </strong>{{ book.isbn }}</li>
           <li><strong>Page Count: </strong>{{ book.pages }}</li>
-          <li><strong>Language: </strong>{{ book.lang }}</li>
+          <li><strong>Language: </strong>{{ book.language }}</li>
           <li>
             <strong>Actions: </strong>
 

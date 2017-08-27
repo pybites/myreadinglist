@@ -1,19 +1,53 @@
 import requests
-import requests_cache
 
-requests_cache.install_cache('book_cache', backend='sqlite', expire_after=86400)
+from mysite.core.models import Book
 
 BASE_URL = 'https://www.googleapis.com/books/v1/volumes'
 SEARCH_URL = BASE_URL + '?q={}'
 BOOK_URL = BASE_URL + '/{}'
-
+NOT_FOUND = 'Not found'
 
 def get_book_info(book_id):
-    query = BOOK_URL.format(book_id)
-    return requests.get(query).json()
+    ''' cache book info in db '''
+    book = Book.objects.filter(bookid=book_id)
+    if book:
+        return book[0]
+
+    else:
+        query = BOOK_URL.format(book_id)
+        resp = requests.get(query).json()
+
+        volinfo = resp['volumeInfo']
+
+        bookid = book_id
+        title = volinfo['title']
+        authors = ', '.join(volinfo['authors'])
+        publisher = volinfo['publisher'].strip('"')
+        published = volinfo['publishedDate']
+
+        identifiers = volinfo.get('industryIdentifiers')
+        isbn = identifiers[-1]['identifier'] if identifiers else NOT_FOUND
+
+        pages = volinfo['pageCount']
+        language = volinfo['language']
+        description = volinfo.get('description', 'No description')
+
+        book = Book(bookid=bookid,
+                    title=title,
+                    authors=authors,
+                    publisher=publisher,
+                    published=published,
+                    isbn=isbn,
+                    pages=pages,
+                    language=language,
+                    description=description)
+        book.save()
+
+        return book
 
 
 def search_books(term):
+    ''' autocomplete = keep this one api live / no cache '''
     query = SEARCH_URL.format(term)
     return requests.get(query).json()
 
